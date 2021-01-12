@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Clock</title>
+    <link rel="stylesheet" href="./style.css">
+    <meta property="og:title" content="My JavaScript Clock">
+    <meta property="og:description" content="My JavaScript Clock">
+    <meta property="og:image" content="./og_clock.jpg"> 
+    <meta property="og:url" content="http://laurahoffmeyer.com/projects/clock/">
+</head>
+<body>
+    <main>
+        <div id="clock">
+            <div class="center"></div>
+            <div class="hand hr"></div>
+            <div class="hand min"></div>
+            <div class="hand sec"></div>
+        </div>
+    </main>
+    <script>
+        const secondHand = document.querySelector(".sec");
+        const minHand = document.querySelector(".min");
+        const hourHand = document.querySelector(".hr");
+        
+        function setDate() {
+            const now = new Date();
+
+            const seconds = now.getSeconds();
+            let secondsDegrees = ((seconds / 60) * 360) + 90;
+            secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+
+            const minutes = now.getMinutes();
+            let minsDegrees = ((minutes / 60) * 360) + 90;
+            minHand.style.transform = `rotate(${minsDegrees}deg)`;
+
+            const hours = now.getHours();
+            let hoursDegrees = ((hours / 12) * 360) + 90;
+            hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+
+            if (secondsDegrees = 360) {
+                secondHand.style.transition = "none";
+                minHand.style.transition = "none";
+                hourHand.style.transition = "none";
+            } else if (secondsDegrees > 0) {
+                secondHand.style.transition = "all 0.05s";
+                minHand.style.transition = "all 0.05s";
+                hourHand.style.transition = "all 0.05s";
+            }
+        }
+
+        setInterval(setDate, 1000);
+    </script>
+</body>
+</html>
